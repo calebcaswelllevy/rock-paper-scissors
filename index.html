@@ -26,6 +26,10 @@
             <div id = 'resultContainer'>
                 <h2 id='result'></h2>
             </div>
+            <div>
+                <h4>Player: <h3 id='playerScore'></h3></h4>
+                <h4>Computer: <h3 id='computerScore'></h3></h4>
+            </div>
         </div>
     </div>
     <style>
@@ -40,7 +44,7 @@
 
     </style>
     <script>
-        alert('running')
+       
         function computerPlay() {
             function getRandomInt(max) {
                     return Math.floor(Math.random()*Math.floor(max))
@@ -68,24 +72,30 @@
                                 case 'rock':
                                     return 'tie'
                                 case 'paper':
+                                    document.getElementById('computerScore').textContent = ++compScore;
                                     return 'Paper beats Rock\nComputer wins'
                                 case 'scissors':
+                                    document.getElementById('playerScore').textContent = ++playerScore;
                                     return 'Rock beats Scissors\nYou Win!'
                             }
                     case 'paper':
                             switch (computerSelection) {
                                 case 'rock':
+                                    document.getElementById('playerScore').textContent = ++playerScore;
                                     return 'Paper beats Rock \n You Win!'
                                 case 'paper':
                                     return 'Tie'
                                 case 'scissors':
+                                    document.getElementById('computerScore').textContent = ++compScore;
                                     return 'Scissors beat paper \n Computer wins'
                             }
                     case 'scissors':
                     switch (computerSelection) {
                             case 'rock':
+                                document.getElementById('computerScore').textContent = ++compScore;
                                 return 'rock beats scissors \n Computer wins'
                             case 'paper':
+                                document.getElementById('playerScore').textContent = ++playerScore;
                                 return 'scissors beat paper\nYou win!'
                             case 'scissors':
                                 return 'Tie'
@@ -129,6 +139,11 @@
         let result = play(playerChoice, computerSelection);
         results.textContent = result;
     }
+    //keep track of score:
+    let playerScore = 0;
+    let compScore = 0;
+    document.getElementById('playerScore').textContent = playerScore;
+    document.getElementById('computerScore').textContent = compScore;
     //text output from choices:
     let playerChoice;
     const playerOutput = document.querySelector('#playerMove');
